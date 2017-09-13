@@ -13,9 +13,11 @@ pipeline {
 				sh 'npm run build:prod'
 			}
 		}
-		stage('test') {
-			sh 'npm run-script lint'
-			sh 'npm run-script test:e2e'
+		stage('test') 
+			steps {
+				sh 'npm run-script lint'
+				sh 'npm run-script test:e2e'
+			}
 		}
 	}
 }
