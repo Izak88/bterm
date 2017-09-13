@@ -1,0 +1,21 @@
+pipeline { 
+	agent any
+	stages {
+		stage('before') {
+			steps {
+				sh 'npm config set spin false'
+				sh 'npm config set progress false'
+			}
+		}
+		stage('install') {
+			steps {
+				sh 'npm install'
+				sh 'npm run build:prod'
+			}
+		}
+		stage('test') {
+			sh 'npm run-script lint'
+			sh 'npm run-script test:e2e'
+		}
+	}
+}
